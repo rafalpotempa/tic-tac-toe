@@ -2,7 +2,7 @@ class Board:
 	state: list
 
 	def __init__(self):
-		self.state = [[1, -1, 0],
+		self.state = [[0, 0, 0],
 			 		  [0, 0, 0],
 			 		  [0, 0, 0]]
 
@@ -11,28 +11,25 @@ class Board:
 			self.state[i][j] = 1
 		else:
 			raise Exception()
+		print('x', i, j)
 
 	def set_o(self, i, j):
 		if self.state[i][j] == 0:
 			self.state[i][j] = -1
 		else:
 			raise Exception()
+		print('o', i, j)
 
 	def evaluate(self):
-		winner = None
 		for i in range(3):
 			score = self.evaluate_row(i)
-			if score == 3: winner = 'player_x'
-			elif score == -3: winner = 'player_o'
+			if abs(score) == 3: return score
 		for j in range(3):
 			score = self.evaluate_column(j)
-			if score == 3: winner = 'player_x'
-			elif score == -3: winner = 'player_o'
+			if abs(score) == 3: return score
 		for up in [True, False]:
 			score = self.evaluate_diagonal(up)
-			if score == 3: winner = 'player_x'
-			elif score == -3: winner = 'player_o'
-		print(winner)
+			if abs(score) == 3: return score
 		
 	def evaluate_row(self, i):
 		return sum(self.state[i])

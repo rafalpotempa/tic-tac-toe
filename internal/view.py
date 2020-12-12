@@ -13,9 +13,7 @@ class View:
 	dw: float
 	dh: float
 
-	def __init__(self, board: Board):
-		self.board = board
-
+	def __init__(self):
 		self.dw = (width-2*margin) / 3.0
 		self.dh = (height-2*margin) / 3.0
 
