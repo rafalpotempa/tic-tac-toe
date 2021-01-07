@@ -11,14 +11,12 @@ class Board:
 			self.state[i][j] = 1
 		else:
 			raise Exception()
-		print('x', i, j)
 
 	def set_o(self, i, j):
 		if self.state[i][j] == 0:
 			self.state[i][j] = -1
 		else:
 			raise Exception()
-		print('o', i, j)
 
 	def evaluate(self):
 		for i in range(3):
@@ -30,6 +28,9 @@ class Board:
 		for up in [True, False]:
 			score = self.evaluate_diagonal(up)
 			if abs(score) == 3: return score
+		draw = [0 not in self.state[i] for i in range(3)]
+		if False not in draw:
+			return -10
 		
 	def evaluate_row(self, i):
 		return sum(self.state[i])

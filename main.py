@@ -4,6 +4,6 @@ from internal.game import Game
 
 if __name__ == "__main__":
 	try:
-		Game(Board(), View()).mainloop()
+		Game(View()).mainloop()
 	except KeyboardInterrupt:
 		exit()

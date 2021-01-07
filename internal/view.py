@@ -5,6 +5,7 @@ width, height = 320, 320
 margin = 20
 background_color = 255, 255, 255
 foreground_color = 0, 0, 0
+font_size = 50
 
 class View:
 	screen: pygame.surface
@@ -18,11 +19,17 @@ class View:
 		self.dh = (height-2*margin) / 3.0
 
 		self.screen = pygame.display.set_mode((width, height))
-		self.screen.fill(background_color)
+
+		pygame.font.init()
+		self.font = pygame.font.SysFont(None, font_size)
+
 		pygame.display.flip()
 
-	def draw_board(self):
-		self.draw_grid()
+	def draw_board(self, full=False):
+		if full:
+			self.screen.fill(background_color)
+			self.draw_grid()
+
 		for i, row in enumerate(self.board.state):
 			for j, field in enumerate(row):
 				if field == 1:
